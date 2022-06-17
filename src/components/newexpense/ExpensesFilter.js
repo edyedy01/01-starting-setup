@@ -1,6 +1,6 @@
 //https://github.com/academind/react-complete-guide-code/blob/04-react-state-events/extra-files/ExpensesFilter.js
 import React, {useState} from 'react';
-
+import Card from '../ui/Card';
 import './ExpensesFilter.css';
 
 const ExpensesFilter = (props) => {
@@ -15,6 +15,7 @@ const ExpensesFilter = (props) => {
     }
 
   return (
+    <Card>
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filter by year</label>
@@ -26,6 +27,7 @@ const ExpensesFilter = (props) => {
         </select>
       </div>
     </div>
+    </Card>
   );
 };
 
