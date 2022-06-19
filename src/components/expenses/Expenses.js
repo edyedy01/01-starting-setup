@@ -11,7 +11,7 @@ function Expenses(props) {
     const filterChangeHandler = (selectedYear) => {
         setSelectedYear(selectedYear);
 
-        console.log(dataList);
+        /*console.log(dataList);
 
         const filteredDataList = props.items.filter(data => {
             const yearDisplay = data.date.getFullYear();
@@ -27,14 +27,29 @@ function Expenses(props) {
 
         setDataList(filteredDataList);
 
-        console.log(dataList);
+        console.log(dataList);*/
     }
+
+    const filteredExpenses = props.items.filter((expenses) => {
+        return expenses.date.getFullYear().toString() === selectedYear;
+    });
+
+    /*return (
+        <div>
+            <Card className='expenses'>
+                <ExpensesFilter selected={selectedYear} onChangeFilter={filterChangeHandler}/>
+                {dataList.map((data) => {
+                    return <ExpenseItem key={data.id} title={data.title} amount={data.amount} date={data.date}/>
+                })}
+            </Card>
+        </div>
+    );*/
 
     return (
         <div>
             <Card className='expenses'>
                 <ExpensesFilter selected={selectedYear} onChangeFilter={filterChangeHandler}/>
-                {dataList.map((data) => {
+                {filteredExpenses.map((data) => {
                     return <ExpenseItem key={data.id} title={data.title} amount={data.amount} date={data.date}/>
                 })}
             </Card>
