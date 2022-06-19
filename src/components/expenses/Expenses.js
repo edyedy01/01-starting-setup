@@ -9,6 +9,18 @@ function Expenses(props) {
 
     const filterChangeHandler = (selectedYear) => {
         setSelectedYear(selectedYear);
+
+        // https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples
+        /*props = props.items.filter(data => {
+            const yearDisplay = data.date.getFullYear();
+
+            console.log(selectedYear);
+            console.log(yearDisplay);
+
+            return selectedYear === yearDisplay;
+        });
+
+        console.log(props);*/
     }
 
     return (

@@ -47,7 +47,7 @@ REACT
 		var (old, use let)
 		let (the new var)
 		const (for constants)
-			var x = 'X';
+			var x = 'X'; 
 			console.log(x);
 			x = 'z';
 			console.log(x);
@@ -306,6 +306,18 @@ REACT
 		12 - statefull vs stateless components:
 			statefull:  contains logic to handle property states
 			stateless:  mainly for presentation only
+		13 - working with lists:  alwaays identify a key/id when working with lists, eg (notice the line with 'props.id' in the code snippet bellow):
+		function ExpenseItem(props) {
+		    return (
+		        <Card className='expense-item'>
+		            <ExpenseDate date={props.date} />
+		            <div key={props.id} className='expense-item__description'>
+		                <h2>{props.title}</h2>
+		                <div className='expense-item__price'>R{props.amount}</div>
+		            </div>
+		        </Card>
+		    );
+		}
 
 	NODE ERRORS
 	    ERROR - when running 'npm install'
