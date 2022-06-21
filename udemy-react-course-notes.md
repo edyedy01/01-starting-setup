@@ -5,6 +5,8 @@ SOURCE CODE
 		https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components
 	end of module 4
 		https://github.com/academind/react-complete-guide-code/tree/04-react-state-events
+	end of module 5
+		https://github.com/academind/react-complete-guide-code/tree/05-rendering-lists-conditional-content
 
 UDEMY REACT COURSE
 	VERY REACTIVE LIKE A MOBILE PHONE APP

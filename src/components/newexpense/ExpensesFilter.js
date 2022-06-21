@@ -1,10 +1,10 @@
 //https://github.com/academind/react-complete-guide-code/blob/04-react-state-events/extra-files/ExpensesFilter.js
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
 import Card from '../ui/Card';
 import './ExpensesFilter.css';
 
 const ExpensesFilter = (props) => {
-    const [selectedYear, setSelectedYear] = useState('');
+    // const [selectedYear, setSelectedYear] = useState('');
 
     const dropDownChangeHandler = (event) => {
         props.onChangeFilter(event.target.value);
