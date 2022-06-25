@@ -348,6 +348,17 @@ REACT
 			using 'react developer tools', a chrome extention
 				extention will add two additional menu's to the F12 view:  Components and Profiler both with purple icons.
 				Components:  this tab will show you the react compoent tree in view
+		19 - binding a label with an input field in jsx (react)
+			    <label htmlFor="username">Username</label>
+            	<input id="username" type="text"/>
+        20 - Press 'Shift+Ctrl+P' to open up the command palette
+   			for formatting:  S+C+P > Format With > TypScript and JavaScript language features (will give you a tab space of 4)
+   		21 - insert compoent's inssers into component:  props.children
+   			const Card = (props) => {
+			    return (
+			        <div>{props.children}</div>
+			    )
+			};
 
 
 	NODE ERRORS
@@ -370,3 +381,43 @@ REACT
 	        try again
 	JSX - JavaScript XML
 		html code embedded in JavaScript
+	ERROR
+		ran 
+			npm install
+		received
+			WARN deprecated core-js@2.6.12: core-js@<3.4 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
+		read
+			https://stackoverflow.com/questions/59354180/error-please-upgrade-your-dependencies-to-the-actual-version-of-core-js3
+		run
+			npm install --save core-js@3.4
+		received
+			added 6 packages, removed 6 packages, changed 169 packages, and audited 1886 packages in 10s
+
+			167 packages are looking for funding
+			  run `npm fund` for details
+
+			28 vulnerabilities (1 moderate, 19 high, 8 critical)
+
+			To address issues that do not require attention, run:
+			  npm audit fix
+
+			To address all issues (including breaking changes), run:
+			  npm audit fix --force
+
+			Run `npm audit` for details.
+
+		run
+			npm audit
+		received
+			...
+			28 vulnerabilities (1 moderate, 19 high, 8 critical)
+
+			To address issues that do not require attention, run:
+			  npm audit fix
+
+			To address all issues (including breaking changes), run:
+			  npm audit fix --force
+		run
+			npm audit fix --force
+		outcome
+			it worked, i was able to run the 'npm start' command successfully and have the application up and running.
