@@ -7,6 +7,10 @@ SOURCE CODE
 		https://github.com/academind/react-complete-guide-code/tree/04-react-state-events
 	end of module 5
 		https://github.com/academind/react-complete-guide-code/tree/05-rendering-lists-conditional-content
+	end of module 6
+		https://github.com/academind/react-complete-guide-code/tree/06-styling
+	end of module 7
+		https://github.com/academind/react-complete-guide-code/tree/07-debugging
 
 UDEMY REACT COURSE
 	VERY REACTIVE LIKE A MOBILE PHONE APP
@@ -275,7 +279,7 @@ REACT
 	        npx create-react-appp <app_name>
 	        this command will automatically download all dependencies
 	REACT SYNTAX RULES
-		1 - L ower case markup is html and uppercase is React.  The React engine uses this convention to detect custom React componnets.
+		1 - Lower case markup is html and uppercase is React.  The React engine uses this convention to detect custom React componnets.
 		2 - any given 'return' statemnt of a react function must only, at any given time, return one root HTML tag.
 		3 - the first line of a .js file cannot contain the keyword 'function', rather leave a blank line as the first line even though you have no imports.
 		4 - "import React from 'react';" is old react syntax, no longer necessary
@@ -320,6 +324,31 @@ REACT
 		        </Card>
 		    );
 		}
+		14 - (``) template literal, used for dynamic string creation, eg:  `orm-control ${!isValid ? 'invalid' :""}`
+		15 - tagged tempalte literal, eg:  const Button = styled.button``;
+		16 - media queries:  the bellow will detect the screen width of the screen and auto adjust styling accordingly
+			@media (min-width: 768px) {
+			  width: auto;
+			}
+		17 - CSS modules - https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/
+			rename .css files
+				from 
+					import './Button.css';
+				to
+					import styles from './Button.module.css';
+			the main ide for css modules
+		18 - debugging react code in chrome:  0
+			debugging via chrom/browser
+				perss F12
+				go to Sources
+				on the page view go to the folder indicated as your code (NOTE:  may also be in the webpack folder)
+				drill down to the js file in question that you want to debug
+				click on the number of the line that you want to place a brake point on
+				press F10 or the 'step over' icon (on the debug toolbar top right of the screen) in order to proceed to the next executable line of code.
+			using 'react developer tools', a chrome extention
+				extention will add two additional menu's to the F12 view:  Components and Profiler both with purple icons.
+				Components:  this tab will show you the react compoent tree in view
+
 
 	NODE ERRORS
 	    ERROR - when running 'npm install'
