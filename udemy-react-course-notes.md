@@ -11,6 +11,8 @@ SOURCE CODE
 		https://github.com/academind/react-complete-guide-code/tree/06-styling
 	end of module 7
 		https://github.com/academind/react-complete-guide-code/tree/07-debugging
+	end of module 8 - this project contains a bit of everything learnt so far including the 'modal' element (informatic dialog).
+		https://github.com/academind/react-complete-guide-code/tree/08-practice-project
 
 UDEMY REACT COURSE
 	VERY REACTIVE LIKE A MOBILE PHONE APP
@@ -359,7 +361,53 @@ REACT
 			        <div>{props.children}</div>
 			    )
 			};
-
+		22 - Array destructuring:  const [enteredUserName, setEnteredUserName] = useState('');
+		23 - Logical or if (or/if):
+			if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
+	            return;
+	        }
+	    24 - Converting String to Number (place a '+' in front of the value in question):
+	    	+enteredAge
+	    25 - instantiation of an empty array:  []
+	    26 - generate random numbers in react for keys:  Math.random().toString()
+	    27 - JSX limitations:
+	    	JSX can only return one root element and no more, eg:
+	    		return (
+	    			<h2>Hi There</h2>
+	    			<p>This does not work</p>
+	    		):
+	    		same with Javascript
+	    		return (
+	    			React.createElement('h2', 'Hi There');
+	    			React.createElement('p', 'This does not work');
+	    		);
+	    	The solution is always to wrap the code in a single element, eg:
+	    		return (
+	    			<div>
+		    			<h2>Hi There</h2>
+		    			<p>This does not work</p>
+	    			</div>
+	    		):
+	    	One could return an array but this would result in an error where react would want a unique key for each element as bellow:
+	    		return [
+	    			<h2>Hi There</h2>
+	    			<p>This does not work</p>
+	    		];
+	    		unique key error
+	    		return [
+	    			<h2 key="1">Hi There</h2>
+	    			<p key="2">This does not work</p>
+	    		];
+	    		this would work but is rather cumbersome, it is easier to just wrap the elements in a div.
+	    	This, however, can lead to the phenomena known as 'div soup' as illustrated bellow:
+	    		<div>
+	    			<div>
+	    				<div>
+	    					<h2>Heading here</h2>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		this can lead to a project containing many nested div's that add no semantic or structural meaning.
 
 	NODE ERRORS
 	    ERROR - when running 'npm install'
@@ -421,3 +469,8 @@ REACT
 			npm audit fix --force
 		outcome
 			it worked, i was able to run the 'npm start' command successfully and have the application up and running.
+	ERROR
+		message
+			UsersList.js:8 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+		interpretation
+			the 'props' value to be forwarded to a component has not been declared.  The first 'at' line of the stack trace should tell you which compoent is the offending one.
