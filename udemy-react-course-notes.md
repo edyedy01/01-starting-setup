@@ -1,4 +1,6 @@
 SOURCE CODE
+	complete guide
+		https://github.com/academind/react-complete-guide-code
 	beginning of course
 		https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components
 	end of module 3 lecturer's code
@@ -13,6 +15,8 @@ SOURCE CODE
 		https://github.com/academind/react-complete-guide-code/tree/07-debugging
 	end of module 8 - this project contains a bit of everything learnt so far including the 'modal' element (informatic dialog).
 		https://github.com/academind/react-complete-guide-code/tree/08-practice-project
+	end of module 9 - this project contains controlled and uncontrolled components, portals, fragments (div soup)
+		https://github.com/academind/react-complete-guide-code/tree/09-fragments-portals-refs
 
 UDEMY REACT COURSE
 	VERY REACTIVE LIKE A MOBILE PHONE APP
@@ -408,6 +412,122 @@ REACT
 	    			</div>
 	    		</div>
 	    		this can lead to a project containing many nested div's that add no semantic or structural meaning.
+	    	Div soup can be fixed by using this Wrapper componenet to return the elements as 'not-an-array':
+	    		const Wrapper = (props) => {
+				    return props.children;
+				};
+
+				export default Wrapper;
+				NOTE:  this is the complete listing of the 'Wrapper' component.
+				Bellow is an example of how to use this component:
+				return (
+	    			<Wrapper>
+		    			<h2>Hi There</h2>
+		    			<p>This does not work</p>
+	    			</Wrapper>
+	    		):
+	    	Div soup can also be prevented by using the following two methods:
+	    		1 - Fragments:
+	    		return (
+	    			<React.Fragment>
+		    			<h2>Hi There</h2>
+		    			<p>This does not work</p>
+	    			</React.Fragment>
+	    		):
+	    		2 - Short cut:
+	    		return (
+	    			<>
+		    			<h2>Hi There</h2>
+		    			<p>This does not work</p>
+	    			</>
+	    		):
+	    		NOTE:  the 'Short cut' will need some configuration on the project in order for it to work.
+	    28 - React Portals - the simple idea behind react portals is that the defined react elements are show in a pre-defined spot anywhere in the application but most commontly the inex.html page.
+	    	create the import statement and the jsx expression
+	    		import ReactDom from 'react-dom';
+
+	    		{ReactDom.createPortal(<Backdrop onConfirm={props.onConfirm}/>, document.getElementById('backdrop-root'))}
+	    	create the portal expression
+	    		<div id="backdrop-root"></div>
+	    	ReactDom expression can be used anywhere that we are using JSX code
+	    29 - Using Ref's
+	    	import useRef
+	    		import React, {useRef} from 'react';
+	    	create the ref const value
+	    		const nameInputRef = useRef();
+	    	attach it to an element
+	    		<input id="username" type="text" onChange={userNameStateChangeHandler} value={enteredUserName} ref={nameInputRef}/>
+	    	get the ref value
+	    		const enteredName = nameInputRef.current.value;
+	    	to reset the ref value
+	    		nameInputRef.current.value = '';
+	    	NOTE:  the above code snippet performs DOM manipulation and is not recommended but works well and is widely used
+	    	NOTE:  this method of using Ref's is also referred to as 'uncontrolled components'
+	    30 - Effects
+	    31 - Reducers:  managing complex state
+	    32 - Context:  managing app-wide and/or component-wide state
+	    33 - Effects and Side Effects
+	    	Browser Storage
+	    		local storage
+	    			localStorage.setItem('isLoggedIn', '1');
+	    			visible on F12 > applications > storage > host url
+	    	Http requests
+	    	Timers
+	    		These tasks happen outside of the normal component evaluation and render cycle
+	    		can be simply described as a trigger to perform a task in response to an event
+	    	useEffect
+	    		useEffect(() => {}, []);
+	    		{} this indicates that whatever is between these parenthesis will be executed
+	    		[] this indicates that whatever is between {} will be executed when whatever is in [] changes
+	    		NOTE:  three things to not put inside of []
+	    		1 - the 'setXXX' functions
+	    		2 - not built in api functions like fetch() and localstorage
+	    		3 - functions or variables defined outside of the components
+	    		example:
+		    		xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		    		import { useEffect, useState } from 'react';
+	 
+					let myTimer;
+					 
+					const MyComponent = (props) => {
+					  const [timerIsActive, setTimerIsActive] = useState(false);
+					 
+					  const { timerDuration } = props; // using destructuring to pull out specific props values
+					 
+					  useEffect(() => {
+					    if (!timerIsActive) {
+					      setTimerIsActive(true);
+					      myTimer = setTimeout(() => {
+					        setTimerIsActive(false);
+					      }, timerDuration);
+					    }
+					  }, [timerIsActive, timerDuration]);
+					};
+					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+					In this example:
+						timerIsActive is added as a dependency because it's component state that may change when the component changes (e.g. because the state was updated)
+						timerDuration is added as a dependency because it's a prop value of that component - so it may change if a parent component changes that value (causing this MyComponent component to re-render as well)
+						setTimerIsActive is NOT added as a dependency because it's that exception: State updating functions could be added but don't have to be added since React guarantees that the functions themselves never change
+						myTimer is NOT added as a dependency because it's not a component-internal variable (i.e. not some state or a prop value) - it's defined outside of the component and changing it (no matter where) wouldn't cause the component to be re-evaluated
+						setTimeout is NOT added as a dependency because it's a built-in API (built-into the browser) - it's independent from React and your components, it doesn't change
+					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+					useEffect(() => {  								//qualifier
+					    console.log('EFFECT RUNNING'); 				//use effect innerds
+					    return (() => { 							//clean up qualifier, will run just before the userEffect call
+					        console.log('EFFECT CLEANUP'); 			//clean up inners
+					    });
+					}, [enteredPassword]); 							//value that, when changed, will trigger a useEffect call
+		34 - useReducer
+			import:  import React, {userReducer} from 'react';
+			anatomy:  const [state, dispatchFunction] = userReducer(reducerFunction, initialState, initialStateFunction);
+			state - state snapshot
+			dispatchFunction - function used to dispatch a new action, ie:  trigger of a state update
+			reducerFunction - function that is triggered straight after the dispatchFunction, receives the latest state snapshot and should received an updated state snapshot
+			initialState - initial state value of the object/field in question
+			initialStateFunction - function that will set the initial state of the object/value in question
+
+
+
 
 	NODE ERRORS
 	    ERROR - when running 'npm install'
