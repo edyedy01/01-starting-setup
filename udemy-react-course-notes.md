@@ -1,6 +1,7 @@
 SOURCE CODE
 	complete guide
 		https://github.com/academind/react-complete-guide-code
+		look under the branches of the repo for the specific code needed
 	beginning of course
 		https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components
 	end of module 3 lecturer's code
@@ -525,9 +526,55 @@ REACT
 			reducerFunction - function that is triggered straight after the dispatchFunction, receives the latest state snapshot and should received an updated state snapshot
 			initialState - initial state value of the object/field in question
 			initialStateFunction - function that will set the initial state of the object/value in question
-
-
-
+		35 - //alias assignment:  the isValid value of the emailState object will be reassigned a name of emailIsValid
+			const emailState = {isValid: true, value: 'john@gmail.com'};
+  			const {isValid: emailIsValid} = emailState;
+  		36 - when to use useState() and useReducer():
+  			useState 										useReducer
+  			the main state management tool 					good if you need more power
+  			good for independent pieces of state/data 		should be considered if you have related pieces of state/data
+  			great of state updates are limited to few 		good for complex state udpates
+  				in number
+  		37 - Using context:
+  			1 - create folder in same level as 'components' folder
+  			2 - create a *-context.js file
+  			3 - insert as bellow
+	  			import React from 'react';
+	  			const AuthContext = React.createContext({
+				    isLoggedIn: false
+				});
+				export default AuthContext;
+			go to component that needs the context
+			import the context component:
+				import AuthContext from './store/auth-context';
+			wrap the components that need the context in the context component:
+				<AuthContext.Provider>...other components...</AuthContext.Provider>
+			two ways to consume context:
+			1 - wrap the components that are going to directly use the context as follows:
+				<AuthContext.Consumer>
+					{(context) =>  
+						(
+							return (
+								...components that are going to directly use the context component...
+								use context values like this:  context.field_name_here
+							);
+						)
+					}
+				</AuthCOntext.Consumer>
+				NOTE:  every component and its sub components and its sub-sub components and so on, all the way down the DOM tree, will have access to the defined context component.
+			2 - alternate way to use the context is with useContext
+				import React {useContext} from 'react';
+				const context = useContext(AuthContext);
+				return (
+					...components that are going to directly use the context component...
+					use context values like this:  context.field_name_here
+				);
+			Context is good for application wide state management but is not a replacement for component state.
+			React Context is not optimised for hight-frequency chanages.
+		38 - RULES ABOUT HOOKS
+			1 - react hooks can only be used in react components or custom hooks.
+			2 - react hooks must only be called at the top level function:  do not call them from nested functions or block statements.
+			3 - useEffect:  always add every component affected by the useEffect in the dependency clause.
 
 	NODE ERRORS
 	    ERROR - when running 'npm install'
